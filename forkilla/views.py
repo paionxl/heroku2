@@ -133,7 +133,7 @@ def reservation(request):
                 resv.restaurant = Restaurant.objects.get(restaurant_number=restaurant_number)
                 resv.user = request.user
                 total_resv = 0
-                for reserva in Reservation.objects.filter(restaurant_id=restaurant_number).filter(day__iexact=resv.day).filter(time_slot=resv.time_slot):
+                for reserva in Reservation.objects.filter(restaurant_id=restaurant_number).filter(day=resv.day).filter(time_slot=resv.time_slot):
                     total_resv = total_resv + reserva.num_people
                 if total_resv + resv.num_people < resv.restaurant.restaurant_capacity:
                     resv.save()
