@@ -108,7 +108,7 @@ WSGI_APPLICATION = 'PracticaWeb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sd2019-forkilla',
+        'NAME': 'sd2019-forkillaf1',
         'USER': 'user',
         'PASSWORD': '',
         'HOST': 'localhost',
