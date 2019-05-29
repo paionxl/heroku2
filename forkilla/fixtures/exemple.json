@@ -1,0 +1,206 @@
+[
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 1,
+    "fields": {
+      "restaurant_number": "09186777",
+      "name": "Only Tapas",
+      "menu_description" :"TAPAS",
+      "price_average" : "30",
+      "is_promot" : "False",
+      "rate" : "10",
+      "category" : "Medi",
+      "city": "Barcelona",
+      "address": "Les Rambles, 33",
+      "country": "Spain",
+      "restaurant_capacity": 40
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 2,
+    "fields": {
+      "restaurant_number": "09186666",
+      "name": "Only Pinxos",
+      "menu_description" :"PINXOS",
+      "price_average" : "130.33",
+      "is_promot" : "True",
+      "rate" : "9.6",
+      "category" : "Basq",
+      "city": "Barcelona",
+      "address": "Gran Via de les Corts Catalanes, 495",
+      "country": "Spain",
+      "restaurant_capacity": 240
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 3,
+    "fields": {
+      "restaurant_number": "00000003",
+      "name": "Clara d'Ou",
+      "menu_description" :"OUS",
+      "price_average" : "10.69",
+      "is_promot" : "True",
+      "rate" : "9.9",
+      "category" : "Medi",
+      "city": "Girona",
+      "address": "Puig d'Àguiles, 68",
+      "country": "Spain",
+      "restaurant_capacity": 60
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 4,
+    "fields": {
+      "restaurant_number": "00000004",
+      "name": "Tres Tristros Trigres",
+      "menu_description" :"Barbacoa",
+      "price_average" : "20.78",
+      "is_promot" : "False",
+      "rate" : "8.4",
+      "category" : "BBQ",
+      "city": "Tarrega",
+      "address": "Major, 2",
+      "country": "Spain",
+      "restaurant_capacity": 60
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 5,
+    "fields": {
+      "restaurant_number": "00000005",
+      "name": "Puzzle",
+      "menu_description" :"Alta cuina",
+      "price_average" : "20.78",
+      "is_promot" : "False",
+      "rate" : "9.5",
+      "category" : "Fusi",
+      "city": "Miami",
+      "address": "Northern Avenue, 12",
+      "country": "USA",
+      "restaurant_capacity": 120
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 6,
+    "fields": {
+      "restaurant_number": "00000006",
+      "name": "Cañas por España",
+      "menu_description" :"Cañas",
+      "price_average" : "155.00",
+      "is_promot" : "True",
+      "rate" : "7.8",
+      "category" : "Medi",
+      "city": "Sant Esteve dels Roures",
+      "address": "1 d'Octubre, 17",
+      "country": "Catalunya",
+      "restaurant_capacity": 120
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 7,
+    "fields": {
+      "restaurant_number": "00000007",
+      "name": "Photometric Estereo",
+      "menu_description" :"Fast Food",
+      "price_average" : "400.01",
+      "is_promot" : "False",
+      "rate" : "8.8",
+      "category" : "Russ",
+      "city": "Sant José Lamas",
+      "address": "Visio Artificial, 3",
+      "country": "Russia",
+      "restaurant_capacity": 9
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 8,
+    "fields": {
+      "restaurant_number": "00000008",
+      "name": "Footeat",
+      "menu_description" :"Sandwitch",
+      "price_average" : "12.50",
+      "is_promot" : "False",
+      "rate" : "2.6",
+      "category" : "Fusi",
+      "city": "Barcelona",
+      "address": "Rocafort, 165",
+      "country": "Spain",
+      "restaurant_capacity": 300
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 9,
+    "fields": {
+      "restaurant_number": "00000009",
+      "name": "Triangles",
+      "menu_description" :"Pizza",
+      "price_average" : "10.50",
+      "is_promot" : "True",
+      "rate" : "7.4",
+      "category" : "Ital",
+      "city": "Barcelona",
+      "address": "Rocafort, 167",
+      "country": "Spain",
+      "restaurant_capacity": 80
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 10,
+    "fields": {
+      "restaurant_number": "00000010",
+      "name": "PastaPazza",
+      "menu_description" :"Italian",
+      "price_average" : "15.50",
+      "is_promot" : "True",
+      "rate" : "8.8",
+      "category" : "Ital",
+      "city": "Madrid",
+      "address": "Gran Via, 155",
+      "country": "Spain",
+      "restaurant_capacity": 50
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 11,
+    "fields": {
+      "restaurant_number": "00000011",
+      "name": "SushiSashimi",
+      "menu_description" :"Japones",
+      "price_average" : "20.50",
+      "is_promot" : "False",
+      "rate" : "9.0",
+      "category" : "Japa",
+      "city": "Madrid",
+      "address": "Atocha, 144",
+      "country": "Spain",
+      "restaurant_capacity": 30
+    }
+  },
+  {
+    "model": "forkilla.Restaurant",
+    "pk": 12,
+    "fields": {
+      "restaurant_number": "00000012",
+      "name": "Cafe Olimpiadas",
+      "menu_description" :"Crep",
+      "price_average" : "5.50",
+      "is_promot" : "True",
+      "rate" : "9.6",
+      "category" : "Cafe",
+      "city": "Madrid",
+      "address": "Plaza Mayor, 165",
+      "country": "Spain",
+      "restaurant_capacity": 300
+    }
+  }
+]

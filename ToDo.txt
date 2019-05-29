@@ -1,0 +1,12 @@
+Barra de direcciones
+Redireccionar PageNotFound/RestaurantNotFound. Done
+Change the model Reservation to make a relation between the User and the reservations. mig Done
+Change the model Review to make a relation between the User and the reviews. Done
+Register an admin view for adding Restaurants. Attach to the existing Restaurants the featured photo file. If none fold is specified in the file fields, the files are stored in the root folder. You can specify a different folder for photos using the “upload_to=” parameter in the models fields constructors: photo = models.ImageField(upload_to="photo_dir")
+Make a commercial user for managing Restaurants and Reviews in the admin site.
+Make that in each web page you can login, register or logout depending on each situation (modify base.html. Remember that it is important the user knows when he is logged or not. Use request.user.is_authenticated in the template to check wheter the user is authenticated, and shows the name of the user if it is logged or links to login / signup forms.
+Make that only registered users can do reservations
+Make that only registered users can do comments.
+Put some nice CSS in your web (see bootstrap webpage for nice dessigns) and add the featured image and link to the instructions inside detail page. Check this documentation for static and media files managment: https://docs.djangoproject.com/en/1.11/howto/static-files/
+Add custom error pages 404.html and 500.html and turn debug mode to off. Use them for rendering exceptions from the views.
+Create a reservationlist view and template where a logged user can access to his reservations, sorted by date, starting by the current day. Make possible to delete a future reservation. Past reservations are shown with a link to add new review for such restaurant. Once the review is done the reservation can be deleted from the model.

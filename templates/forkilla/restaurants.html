@@ -1,0 +1,53 @@
+{% extends 'forkilla/base.html' %}
+{% block content %}
+<html>
+    <head>
+        <meta charset="UTF-8" >
+        <meta name="description" content="This the main Forkilla's page" >
+        <title> Forkilla </title>
+    </head>
+    <body style="background-color: #9ebd7e;">
+        <header> <!-- Direction bar + Title -->
+            <hr/>
+            {% if city%}
+            <h2 style="color: #06581c;">{{city}}</h2>
+                {% if category%}
+                    <h3 style="color: #06581c;">{{category}}</h3>
+                {% endif %}
+            {% endif %}
+        </header>
+        <main>
+            <article> <!-- Display of the restaurants -->
+                {% if restaurants %}
+                    {% if promoted %}
+                        <h3 style="color: #06581c;">Promoted Restaurants</h3>
+                    {% else %}
+                        {% if not city%}
+                            <h3 style="color: #06581c;">All restaurants</h3>
+                        {% endif %}
+                    {% endif %}
+                    <form action="{% url 'reservation'%}" method="get">
+                        <ul>
+                        {% for restaurant in restaurants %}
+                            {% ifchanged restaurant.category %}
+                                <h4 style="color: #06581c;"> <b>{{restaurant.category}}</b> </h4>
+                            {% endifchanged %}
+                            <li style="color: #06581c;" >
+                                <a href="{% url 'restaurant' restaurant.restaurant_number%}"> {{restaurant.name}}</a>: {{restaurant.menu_description}}
+                                <button type="submit" name="reservation" value={{restaurant.restaurant_number}}> Reservation </button>
+                            </li>
+                            <br>
+                        {% endfor %}
+                        </ul>
+                    </form>
+                {% else %}
+                    <p style="color: #06581c;">No restaurants are available.</p>
+                {% endif %}
+            </article>
+        </main>
+        <footer>
+
+        </footer>
+    </body>
+</html>
+{% endblock %}

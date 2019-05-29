@@ -1,0 +1,67 @@
+{% extends 'forkilla/base.html' %}
+{% block content %}
+<html>
+    <head>
+        <meta charset="UTF-8" >
+        <meta name="description" content="This the page that showns the details for a Forkilla's restaurant" >
+        <title>{{restaurant.name}} details</title>
+    </head>
+
+    <body style="background-color: #9ebd7e; color: #06581c;">
+        <header>
+            <hr/>
+            <h2>Restaurant details.</h2>
+        </header>
+        <main>
+            <article> <!-- Specifications of the restaurant -->
+                {% if restaurant %}
+
+                    <div>
+                    <dl>
+                        <dt><h3>Restaurant: {{restaurant.name}}</h3></dt>
+                        <dd><b>Menu description:</b> {{restaurant.menu_description}}</dd>
+                        <dd><b>Average price:</b> {{restaurant.price_average}}</dd>
+                        <dd><b>Promoted:</b> {{restaurant.is_promot}}</dd>
+                        <dd><b>Rate:</b> {{restaurant.rate}}/10</dd>
+                        <dd><b>Category:</b> {{restaurant.category}}</dd>
+                        <dd><b>City:</b> {{restaurant.city}}</dd>
+                        <dd><b>Adress:</b> {{restaurant.address}}</dd>
+                        <dd><b>Country:</b> {{restaurant.country}}</dd>
+
+                        <br/>
+                        <form action="{% url 'reservation'%}" method="get">
+                            <button type="submit" name="reservation" value={{restaurant.restaurant_number}}> Reservation </button>
+                        </form>
+                        <form action="{% url 'reviews'%}" method="get">
+                            <button type="submit" name="reviews" value={{restaurant.restaurant_number}}> Add Review </button>
+                        </form>
+                    </dl>
+
+                    </div>
+                    <div style="position:absolute;top:170px; left:400px;">
+                        {% if restaurant.featured_photo %}
+                        {% load static %}
+                        <img witdth="200" height="200" style="box-shadow: 5px 5px 5px green ; border-radius: 20%;" src="{% static restaurant.featured_photo %}" alt="My image"/>
+                        {% else %}
+                        <p>No image available.</p>
+                        {% endif %}
+                    </div>
+                    <h3>REVIEWS</h3>
+                    {% for review in reviews %}
+                        <h4> <b>{{review.user.username}}: {{review.rating}}</b> </h4>
+                        <li>
+                            {{review.comment}}
+                        </li>
+                        <hr/>
+                    {% endfor %}
+                {% else %}
+                    <p>No restaurants are available.</p>
+                {% endif %}
+            </article>
+        </main>
+        <footer>
+
+        </footer>
+    </body>
+</html>
+{% endblock%}

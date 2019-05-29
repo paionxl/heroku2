@@ -1,0 +1,22 @@
+{% extends 'forkilla/base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background-color: #9ebd7e; color: #06581c;">
+<h2>Result reservation</h2>
+{% if result %}
+    {% if full %}
+        <h3> The restaurant is full </h3>
+    {% else %}
+        <h3>The reservation has been completed successfully </h3>
+    {% endif %}
+{% else %}
+    <h3>ERROR</h3>
+{% endif %}
+</body>
+</html>
+{% endblock %}
+

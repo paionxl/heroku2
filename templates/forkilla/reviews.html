@@ -1,0 +1,29 @@
+{% extends 'forkilla/base.html' %}
+{% block content %}
+    <html>
+    <head>
+        <meta charset="UTF-8" >
+        <meta name="description" content="This the page that showns the details for a Forkilla's restaurant" >
+        <title> Forkilla </title>
+    </head>
+    <body s style="background-color: #9ebd7e; color: #06581c;">
+    <header>
+        <nav>
+
+        </nav>
+        <h2> Writing a review for the restaurant {{restaurant.name}}</h2>
+    </header>
+
+    <main>
+        <form method="POST" >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save</button>
+        </form>
+    </main>
+    <footer>
+
+    </footer>
+    </body>
+    </html>
+{% endblock %}

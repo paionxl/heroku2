@@ -1,0 +1,47 @@
+{% extends 'forkilla/base.html' %}
+{% block content %}
+<html>
+    <head>
+        <meta charset="UTF-8" >
+        <meta name="description" content="This the page that showns the details for a Forkilla's restaurant" >
+        <title> Forkilla </title>
+    </head>
+    <body s style="background-color: #9ebd7e; color: #06581c;">
+        <header>
+            <nav>
+            </nav>
+            <h2> Managing reservations</h2>
+        </header>
+
+        <main>
+            {% for reservation in reservations_past %}
+                <dl>
+                    <dt><h3>Restaurant: {{reservation.restaurant.name}}</h3></dt>
+                    <dd><b>Reservation day:</b> {{reservation.day}}</dd>
+                    <dd><b>Time slot:</b> {{reservation.time_slot}}</dd>
+                    <dd><b>Num people:</b> {{reservation.num_people}}</dd>
+                    <form action="{% url 'reviews'%}" method="get">
+                        <button type="submit" name="reviews" value={{reservation.restaurant.restaurant_number}}> Add Review </button>
+                    </form>
+                </dl>
+            {% endfor %}
+            {% for reservation in reservations_future %}
+            <dl>
+                <dt><h3>Restaurant: {{reservation.restaurant.name}}</h3></dt>
+                <dd><b>Reservation day:</b> {{reservation.day}}</dd>
+                <dd><b>Time slot:</b> {{reservation.time_slot}}</dd>
+                <dd><b>Num people:</b> {{reservation.num_people}}</dd>
+                <form action="{% url 'reservations'%}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="delete_reservation" value={{reservation.id}}> Delete reservation </button>
+                </form>
+
+            </dl>
+            {% endfor %}
+        </main>
+        <footer>
+
+        </footer>
+    </body>
+</html>
+{% endblock %}
