@@ -13,6 +13,16 @@
     }
 
     .topnav a {
+         float: left;
+         display: block;
+         color: black;
+         text-align: center;
+         padding: 14px 16px;
+         text-decoration: none;
+         font-size: 17px;
+    }
+
+    .topnav b {
         float: left;
         display: block;
         color: black;
@@ -77,13 +87,14 @@
 </style>
 
 <div class="topnav">
+    <b>FORKILLA</b>
     {% if admin %}
         <a href="{%url 'addrestaurant' %}"> Add restaurant </a>
     {% endif %}
     {% if logged %}
         <a href="{%url 'logout' %}?next={{next_url}}"> Logout </a>
         <a href="{%url 'reservations' %}"> My reservations </a>
-        Logged as {{user_name}}
+        <b>Logged as {{user_name}}</b>
     {% else %}
         <a href="{%url 'login' %}?next={{next_url}}"> Login </a>
         <a href="{%url 'register' %}"> Registration </a>
