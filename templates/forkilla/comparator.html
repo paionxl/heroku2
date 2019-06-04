@@ -38,7 +38,7 @@
             $.when(
                 {% for ip in ips %}
                     $.ajax({
-                        url: "http://" + "{{ip}}" + "/" + api_url
+                        url: "https://" + "{{ip}}" + "/" + api_url
                     }),
                 {% endfor %}
             ).then(function(
