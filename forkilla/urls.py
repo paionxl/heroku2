@@ -2,7 +2,7 @@ from django.conf.urls import url
 
 from . import views
 
-listOfAddresses = ["localhost"]
+listOfAddresses = ["https://sd2019-forkillaf1.herokuapp.com"]
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
