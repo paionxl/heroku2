@@ -277,7 +277,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Restaurants to be viewed or edited.
     """
-    permission_classes = (IsOwnerOrReadOnly,)
+    permission_classes = (IsAdminOrCommercial,)
     queryset = Review.objects.all().order_by('restaurant')
     serializer_class = ReviewSerializer
 
