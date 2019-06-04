@@ -16,7 +16,7 @@ from django.http import Http404
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from .serializers import RestaurantSerializer, ReviewSerializer
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsAdminOrCommercial
 
 
 def _check_session(request):
@@ -252,7 +252,7 @@ class RestaurantViewSet(viewsets.ModelViewSet):
 
 
 
-    permission_classes = (IsOwnerOrReadOnly,)
+    permission_classes = (IsAdminOrCommercial,)
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
 
