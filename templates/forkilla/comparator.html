@@ -1,29 +1,108 @@
 {% extends 'forkilla/base.html' %}
+
 {% block content %}
-<html>
-<head>
-    <meta charset="UTF-8" >
-    <meta name="description" content="This the page that showns the details for a Forkilla's restaurant" >
-    <title> Forkilla </title>
-</head>
-<body s style="background-color: #9ebd7e; color: #06581c;">
-<header>
-    <nav>
+<div class="container" style="margin-top: 15px; margin-bottom: 15px;">
+    <h4> Search restaurants by city, category and maximum price</h4>
 
-    </nav>
-    <h2> Searching restaurants </h2>
-</header>
+    <input type="text" id="category" placeholder="Category">
+    <input type="text" id="city" placeholder="City">
+    <input type="text" id="price" placeholder="Price">
+    <button onclick="filter()">Search</button>
 
-<main>
-    <form method="POST" >
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Search</button>
-    </form>
-</main>
-<footer>
+    <ul id="callList" style="margin-top: 15px; margin-bottom: 15px;">
 
-</footer>
-</body>
-</html>
+    </ul>
+</div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+    <script>
+        function filter() {
+
+            var city = document.getElementById('city').value;
+            var category = document.getElementById('category').value;
+            var price = document.getElementById('price').value;
+
+            var api_url = "api/restaurants/?";
+            var api_params = [];
+
+            if(city)
+                api_params.push("city=" + city);
+            if(category)
+                api_params.push("category=" + category);
+            if(price)
+                api_params.push("price=" + price);
+
+            api_url += api_params.join("&");
+
+            $.when(
+                {% for ip in ips %}
+                    $.ajax({
+                        url: "http://" + "{{ip}}" + "/" + api_url
+                    }),
+                {% endfor %}
+            ).then(function(
+                {% for i in length %}
+                    v{{i}},
+                {% endfor %}
+            )
+            {
+                var args = [].slice.apply(arguments);
+
+                var a = [];
+                {% for ip in ips %}
+                    a.push("{{ip}}");
+                {% endfor %}
+
+                var calls = a.map(function (e, i) {
+                    return [args[i], e];
+                });
+
+                var restaurants = []
+                calls.forEach(function (call) {
+                    var response = call[0];
+                    var ip = call[1];
+                    if(calls.length == 1){
+                        response.results.forEach(function (restaurant) {
+                            restaurants.push([restaurant, ip]);
+                        });
+                    }
+                    else{
+                        response[0].results.forEach(function (restaurant) {
+                                restaurants.push([restaurant, ip]);
+                            });
+                    }
+                });
+
+                var $ul = $('#callList');
+                $ul.empty();
+                restaurants.sort(function (a, b) {
+                    return a[0]["price_average"] - b[0]["price_average"]
+                });
+                var textnode = '<h5>Results from your search</h5>' + '<ul>';
+                restaurants.forEach(function (obj) {
+                    var restaurant = obj[0];
+                    var ip = obj[1];
+                    textnode +=
+                        '<li>' +
+                        '<h6>' + '<a href="https://' + ip + '/forkilla/restaurant/' + restaurant.restaurant_number + '/">' + restaurant.name + '</a>' + ', ' + restaurant.city + '</h6>' +
+                        '<p>' + '<strong>' + 'Menu description: ' + '</strong>' + restaurant.menu_description + '<br>' +
+                        '<strong>' + 'Price average: ' + '</strong>' + restaurant.price_average + '€. ' + '<br>' +
+                        '<strong>' + 'Rating: ' + '</strong>' + restaurant.rate + ' out of 10. ' + '<br>' +
+                        '<strong>' + 'Address: ' + '</strong>' + restaurant.address + '.' + '<br>' +
+                        '<strong>' + 'From API: ' + '</strong>' + ip  + '</p>' +
+                        '</li>';
+
+                });
+                textnode += '</ul>'
+                $ul.append(textnode);
+            }, error);
+
+        }
+
+        function error(e){
+            console.log("Error: " + e.description);
+        }
+    </script>
+
 {% endblock %}

@@ -283,50 +283,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
 @login_required
 def comparator(request,ips):
-    for ip in ips:
-        print (ip)
-    try:
-        if request.method == "POST":
-            form = ComparatorForm(request.POST)
-            if form.is_valid():
-                resv = form.save(commit=False)
-                city = request.session["city"]
-                category = request.session["category"]
-                price_average = request.session["price_average"]
-
-                context ={
-                    'city' : city,
-                    'category' : category,
-                    'price_average' : price_average,
-                    'logged': request.user.is_authenticated(),
-                    'user_name': request.user.username,
-                    'viewedrestaurants': _check_session(request),
-                    'admin': request.user.is_superuser,
-                }
-                return render(request, 'comparator', context)
-            else:
-                request.session["result"] = form.errors
-                return HttpResponseRedirect(reverse('checkout'))
-
-        elif request.method == "GET":
-            restaurant_number = request.GET["reservation"]
-            request.session["reserved_restaurant"] = restaurant_number
-
-            form = ReservationForm()
-            viewedrestaurants = _check_session(request)
-            restaurant = Restaurant.objects.get(restaurant_number = restaurant_number)
-            lastviewed = RestaurantInsertDate(viewedrestaurants=viewedrestaurants,restaurant = restaurant)
-            lastviewed.save()
-            context = {
-                'logged': request.user.is_authenticated(),
-                'user_name': request.user.username,
-                'admin': request.user.is_superuser,
-                'restaurant': restaurant,
-                'form': form,
-                'city': restaurant.city,
-                'category': restaurant.category,
-                'viewedrestaurants': viewedrestaurants
-            }
-    except Restaurant.DoesNotExist:
-        raise Http404
-    return render(request, 'forkilla/reservation.html', context)
+    context = {
+        'ips' : ips,
+        'length' : range(len(ips)) }
+    return render(request, 'forkilla/comparator.html', context)

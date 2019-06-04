@@ -2,7 +2,7 @@ from django.conf.urls import url
 
 from . import views
 
-listOfAddresses = ["161.116.56.65","161.116.56.165"]
+listOfAddresses = ["localhost"]
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
